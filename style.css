@@ -13900,7 +13900,7 @@ select.selectric {
 }
 
 .catalogues .customLeft a {
-    background: url("../_ui/responsive/theme-yellow/images/main-left.png");
+    background: url("Top/UI/copia-theme/images/main-left.png");
     height: 40px;
     width: 40px;
     display: block;
@@ -13908,7 +13908,7 @@ select.selectric {
 
 .catalogues .customLeft a:hover {
     cursor: pointer;
-    background: url("../_ui/responsive/theme-yellow/images/main-left-hover.png");
+    background: url("Top/UI/copia-theme/images/main-left-hover.png");
 }
 
 .catalogues .customRight {
@@ -13933,7 +13933,7 @@ select.selectric {
 }
 
 .catalogues .customRight a {
-    background: url("../_ui/responsive/theme-yellow/images/main-right.png");
+    background: url("Top/UI/copia-theme/images/main-right.png");
     height: 40px;
     width: 40px;
     display: block;
@@ -13941,7 +13941,7 @@ select.selectric {
 
 .catalogues .customRight a:hover {
     cursor: pointer;
-    background: url("../_ui/responsive/theme-yellow/images/main-right-hover.png");
+    background: url("Top/UI/copia-theme/images/main-right-hover.png");
 }
 
 .catalogues .viewAll {
@@ -19512,7 +19512,7 @@ select.selectric {
 }
 
 .products .productListing .col2 .list-view .card .inner .icheckbox, .products .productListing .col2 .list-view .card .content-detail .inner1 .icheckbox, .content-detail .products .productListing .col2 .list-view .card .inner1 .icheckbox {
-    background: url("../_ui/responsive/theme-yellow/images/checkbox1.png");
+    background: url("Top/UI/copia-theme/images/checkbox1.png");
     width: 20px;
     height: 19px;
     position: absolute;
@@ -20333,7 +20333,7 @@ select.selectric {
 }
 
 .products .productDetail .product-info .icheckbox {
-    background: url("../_ui/responsive/theme-yellow/images/checkbox1.png");
+    background: url("Top/UI/copia-theme/images/checkbox1.png");
     width: 20px;
     height: 19px;
     float: left;
@@ -20345,7 +20345,7 @@ select.selectric {
 }
 
 .products .productDetail .product-info .icheckbox.checked {
-    background: url("../_ui/responsive/theme-yellow/images/checkbox-checked.png");
+    background: url("Top/UI/copia-theme/images/checkbox-checked.png");
 }
 
 .products .productDetail .product-tabs .nav-tabs {
@@ -21148,7 +21148,7 @@ form .error, .form .error {
 
 @font-face {
     font-family: "Ionicons";
-    src: url("../_ui/responsive/theme-yellow/fonts/ionicons.woff2?v=2.0.0") format("woff2"), url("../_ui/responsive/theme-yellow/fonts/ionicons.ttf?v=2.0.0") format("truetype");
+    src: url("Top/UI/copia-theme/fonts/ionicons.woff2") format("woff2"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
@@ -21711,7 +21711,7 @@ a.simplebanner-a:hover {
 
 .card-loading {
     display: none;
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center center;
+    background: url("Top/UI/common/spinner.gif") no-repeat center center;
     width: 100%;
     text-align: center;
     vertical-align: middle;
@@ -21729,7 +21729,7 @@ a.simplebanner-a:hover {
 }
 
 .cart-items-container.busy, #checkoutDetailsContainer.busy, .otb-balance-container-busy #billingAddressFragment.busy {
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center 100px;
+    background: url("Top/UI/common/spinner.gif") no-repeat center 100px;
 }
 
 .otb-balance-container {
@@ -21737,7 +21737,7 @@ a.simplebanner-a:hover {
 }
 
 .loading, .otb-balance-container-busy {
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center center;
+    background: url("Top/UI/common/spinner.gif") no-repeat center center;
 }
 
 .cart-overlay {
@@ -21955,7 +21955,7 @@ p.regsuccess {
 
 .search-section.busy {
     display: block;
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center center;
+    background: url("Top/UI/common/spinner.gif") no-repeat center center;
     width: 100%;
     text-align: center;
     vertical-align: middle;
@@ -21984,18 +21984,18 @@ p.regsuccess {
 }
 
 .checkout-shipping-option-change.loading {
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center right;
+    background: url("Top/UI/common/spinner.gif") no-repeat center right;
     padding: 20px;
 }
 
 .modal-loading {
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center center;
+    background: url("Top/UI/common/spinner.gif") no-repeat center center;
     height: 100px;
     background-color: #FFF;
 }
 
 .barcode-scanner-loading {
-    background: url("../_ui/responsive/theme-yellow/images/loading.gif") no-repeat center right;
+    background: url("Top/UI/common/spinner.gif") no-repeat center right;
 }
 
 .checkout-shipping-option-change.loading span {
@@ -22501,7 +22501,7 @@ body::-webkit-scrollbar-track:active, body::-webkit-scrollbar-track:active {
 }
 
 .icheckbox {
-    background: url("../_ui/responsive/theme-yellow/images/checkbox1.png");
+    background: url("Top/UI/copia-theme/images/checkbox1.png");
     width: 20px;
     height: 19px;
     float: left;
@@ -22509,7 +22509,7 @@ body::-webkit-scrollbar-track:active, body::-webkit-scrollbar-track:active {
 }
 
 .icheckbox.checked {
-    background: url("../_ui/responsive/theme-yellow/images/checkbox-checked.png");
+    background: url("Top/UI/copia-theme/images/checkbox-checked.png");
 }
 
 .message {
@@ -22568,11 +22568,11 @@ body::-webkit-scrollbar-track:active, body::-webkit-scrollbar-track:active {
 }
 
 .iradio.checked {
-    background: url("../_ui/responsive/theme-yellow/images/radio-checked.png");
+    background: url("Top/UI/copia-theme/images/radio-checked.png");
 }
 
 .iradio {
-    background: url("../_ui/responsive/theme-yellow/images/radio.png");
+    background: url("Top/UI/copia-theme/images/radio.png");
     width: 21px;
     height: 21px;
     float: left;
@@ -28417,8 +28417,8 @@ input.chk-slide[type=checkbox]:checked+label, input.chk-slide[type=checkbox]:che
 
 @font-face {
     font-family: 'asm_icons';
-    src: url("../_ui/responsive/theme-yellow/fonts/ionicons.eot?v=2.0.0");
-    src: url("../_ui/responsive/theme-yellow/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("../_ui/responsive/theme-yellow/fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("../_ui/responsive/theme-yellow/fonts/ionicons.woff?v=2.0.0") format("woff"), url("../_ui/responsive/theme-yellow/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
+    src: url("Top/UI/copia-theme/fonts/ionicons.woff2");
+    src: url("Top/UI/copia-theme/fonts/ionicons.woff2") format("embedded-opentype"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("truetype"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("woff"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("svg");
     font-weight: normal;
     font-style: normal;
 }
