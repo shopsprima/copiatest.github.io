@@ -8073,8 +8073,8 @@ button.close {
 
 @charset "UTF-8";@font-face {
     font-family: "Ionicons";
-    src: url("../_ui/responsive/theme-yellow/fonts/ionicons.eot?v=2.0.0");
-    src: url("../_ui/responsive/theme-yellow/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("../_ui/responsive/theme-yellow/fonts/ionicons.woff2?v=2.0.0") format("woff2"), url("../_ui/responsive/theme-yellow/fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("../_ui/responsive/theme-yellow/fonts/ionicons.woff?v=2.0.0") format("woff"), url("../_ui/responsive/theme-yellow/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg");
+    src: url("Top/UI/copia-theme/fonts/ionicons.woff2");
+    src: url("Top/UI/copia-theme/fonts/ionicons.woff2") format("embedded-opentype"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("woff2"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("truetype"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("woff"), url("Top/UI/copia-theme/fonts/ionicons.woff2") format("svg");
     font-weight: normal;
     font-style: normal
 }
@@ -11065,7 +11065,7 @@ button.close {
     height: 25px;
     font-size: 0;
     color: #fff;
-    background: url(../_ui/responsive/theme-yellow/img/loading.gif)top left no-repeat;
+    background: url(Top/UI/common/spinner.gif)top left no-repeat;
     border: none
 }
 
@@ -11207,13 +11207,13 @@ button.close {
 
 @font-face {
     font-family: 'Roboto';
-    src: url("../_ui/responsive/theme-yellow/fonts/Roboto-Regular.woff2") format("woff2"), url("../_ui/responsive/theme-yellow/fonts/Roboto-Regular.otf") format("truetype");
+    src: url("Top/UI/copia-theme/fonts/Roboto-Regular.woff2") format("woff2"), url("Top/UI/copia-theme/fonts/Roboto-Regular.woff2") format("truetype");
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Roboto';
-    src: url("../_ui/responsive/theme-yellow/fonts/Roboto-Bold.woff2") format("woff2"), url("../_ui/responsive/theme-yellow/fonts/Roboto-Bold.otf") format("truetype");
+    src: url("Top/UI/copia-theme/fonts/Roboto-Bold.woff2") format("woff2"), url("Top/UI/copia-theme/fonts/Roboto-Bold.woff2") format("truetype");
     font-weight: bold;
     font-style: bold;
     font-display: swap;
@@ -13576,15 +13576,15 @@ select.selectric {
 }
 
 .banner .banner-carousel .one {
-    background: url("../_ui/responsive/theme-yellow/images/home/1.jpg") no-repeat;
+    background: url("Top/UI/copia-theme/images/COPIA-PESA-BANNER.jpeg") no-repeat;
 }
 
 .banner .banner-carousel .two {
-    background: url("../_ui/responsive/theme-yellow/images/home/2.jpg") no-repeat;
+    background: url("Top/UI/copia-theme/images/banner3.png") no-repeat;
 }
 
 .banner .banner-carousel .three {
-    background: url("../_ui/responsive/theme-yellow/images/home/3.jpg") no-repeat;
+    background: url("Top/UI/copia-theme/images/banner2.jpg") no-repeat;
 }
 
 .banner .banner-carousel .image {
@@ -15440,7 +15440,7 @@ select.selectric {
 }
 
 .store-white, .store-yellow {
-    background: url("../_ui/responsive/theme-yellow/images/store-locator/white.png");
+    background: url("Top/UI/copia-theme/images/store-locator/white.png");
     width: 120px;
     height: 42px;
 }
