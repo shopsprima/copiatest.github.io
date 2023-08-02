@@ -2,6 +2,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+    var searchTerm = "";
+    var txt = document.createElement("textarea");
+    txt.innerHTML = "";
+    searchTerm = txt.value;
+    var searchType = "";
+    if (searchTerm != "") {
+        searchType = "Text Search"
+    }
+
+    var pageType = "";
+    var isHomePage = "true";
+    var allSearchedCategories = "";
+    if ((window.sessionStorage.getItem("allSearchedCategories") != "") && (searchTerm != "") && (pageType.includes("SEARCH") || pageType.includes("CATEGORY") || pageType.includes("PRODUCT"))) {
+        allSearchedCategories = window.sessionStorage.getItem("allSearchedCategories");
+        window.sessionStorage.setItem('selectedCategoryFromSearchPageDropDown', "");
+        window.sessionStorage.setItem('selectedProductFromSearchPageDropDown', "");
+    }
+    ;
+    if (!pageType && isHomePage == "true") {
+        pageType = "HOMEPAGE";
+    }
+
+    var userType = "Guest";
+    var memberType = "";
+    var loggedInStatus = "Anonymous";
+    var customerId = "";
+    var businessAccountId = "";
+    var businessName = "";
+    var businessVatID = "";
+
+    if (!memberType) {
+        memberType = "";
+    }
+    if (memberType == "Individual") {
+        memberType = "B2C";
+    }
+    if (memberType == "Business") {
+        memberType = "B2B";
+    }
+
+    if (document.getElementById("userRegistrationType")) {
+        loggedInStatus = "Logged in";
+        userType = "Registered";
+        customerId = "";
+        businessAccountId = "";
+        businessName = "";
+        businessVatID = "";
+    }
+
+    if (loggedInStatus == "Anonymous") {
+        memberType = "";
+    }
+
+    if (!memberType && loggedInStatus == "Logged in") {
+        if (businessName != "" || businessVatID != "") {
+            memberType = "B2B";
+        } else {
+            memberType = "B2C";
+        }
+    }
+
+    var selectedCategoryItem = "";
+    var selectedItem = "";
+
+    function getSelectedCategoryDetails(index) {
+        selectedCategoryItem = document.getElementById("categoryAutoSuggetionID" + index).getAttribute("value");
+        window.sessionStorage.setItem('selectedCategoryFromSearchPageDropDown', selectedCategoryItem);
+        window.sessionStorage.setItem('selectedProductFromSearchPageDropDown', selectedCategoryItem);
+        window.sessionStorage.setItem('allSearchedCategories', "");
+        window.sessionStorage.setItem('searchDropDownSelectedIndex', index);
+    }
+
+    function getSelectedProductDetails(index) {
+        selectedItem = document.getElementById("productAutoSuggetionID" + index).getAttribute("value");
+        selectedCategoryItem = document.getElementById("productAutoSuggetionID" + index).getAttribute("category");
+        window.sessionStorage.setItem('selectedProductFromSearchPageDropDown', selectedItem);
+        window.sessionStorage.setItem('selectedCategoryFromSearchPageDropDown', selectedCategoryItem);
+        window.sessionStorage.setItem('allSearchedCategories', "");
+        window.sessionStorage.setItem('searchDropDownSelectedIndex', index);
+    }
+
+    if ((window.sessionStorage.getItem("selectedCategoryFromSearchPageDropDown") != "") && (pageType.includes("SEARCH") || pageType.includes("CATEGORY") || pageType.includes("PRODUCT"))) {
+        selectedCategoryItem = window.sessionStorage.getItem("selectedCategoryFromSearchPageDropDown");
+        if (searchType == "") {
+            searchType = "Text Search";
+        }
+    }
+    if ((window.sessionStorage.getItem("selectedProductFromSearchPageDropDown") != "") && (pageType.includes("SEARCH") || pageType.includes("CATEGORY") || pageType.includes("PRODUCT"))) {
+        selectedItem = window.sessionStorage.getItem("selectedProductFromSearchPageDropDown");
+        if (searchType == "") {
+            searchType = "Text Search";
+        }
+    }
+
+    if (selectedItem != "" && (pageType == "PRODUCT" || pageType.includes("CATEGORY"))) {
+        selectedItem = "";
+        selectedCategoryItem = "";
+        searchType = "";
+        window.sessionStorage.setItem('allSearchedCategories', "");
+        window.sessionStorage.setItem('selectedCategoryFromSearchPageDropDown', "");
+        window.sessionStorage.setItem('selectedProductFromSearchPageDropDown', "");
+    }
+
+    //Creating Filters
+    var filterMap = new Map();
+    var priceUpperLimit = "";
+    var priceLowerLimit = "";
+    if (pageType.includes("CATEGORY")) {
+        if (priceUpperLimit != "") {
+            filterMap.set('filter_prices_max', priceUpperLimit);
+        }
+        if (priceLowerLimit != "") {
+            filterMap.set('filter_prices_min', priceLowerLimit);
+        }
+
+    }
+    if (pageType.includes("SEARCH") || pageType.includes("PRODUCTSEARCH")) {
+        if (priceUpperLimit != "") {
+            filterMap.set('filter_prices_max', priceUpperLimit);
+        }
+        if (priceLowerLimit != "") {
+            filterMap.set('filter_prices_min', priceLowerLimit);
+        }
+
+    }
+
+    var filterData = {};
+    filterMap.forEach((key,value)=>{
+        filterData[value] = key;
+    }
+    )
+
+    var dataLayer = [{
+        //Page Data
+        page_type: pageType,
+        //search detail page and to be populated when we are seeing search result
+        search_term: searchTerm,
+        search_results_total: "",
+        search_dropdown_category: (selectedCategoryItem) ? selectedCategoryItem : allSearchedCategories,
+        search_dropdown_selected: (selectedItem) ? selectedItem : "",
+        search_type: searchType,
+        //add the respective filters being applied across the each category of the products (only to be populated on listing pages
+        filterData,
+        //store id selected by the user
+        store_id: "B14",
+        //User Data
+        logged_in_status: loggedInStatus,
+        user_type: userType,
+        member_type: memberType ? memberType : "",
+        business_account_id: businessAccountId,
+        customer_id: customerId,
+        individual_customer_tier: "",
+        business_customer_tier: "",
+        shopping_interest: "",
+    }];
+
+    //Function to update if we are clicking the retry button
+    function updatePaymentRetryStatus() {
+        window.sessionStorage.setItem('isRetryAllowed', "allowed");
+    }
+</script>
+<style>
+    .async-hide {
+        opacity: 0 !important
+    }
+</style>
+<script type="text/javascript">
+    <!-- Google Tag Manager HEAD -->
+    (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0]
+          , j = d.createElement(s)
+          , dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    }
+    )(window, document, 'script', 'dataLayer', 'GTM-PCPNHSJ');
+    <!-- End Google Tag Manager HEAD -->
+</script>
+<script type="text/javascript">
+
+    dataLayer.push({
+        'userId': "Guest"
+    });
+</script>
 <script>
 window.dataLayer = window.dataLayer || [];
 </script>
@@ -13,7 +204,7 @@ window.dataLayer = window.dataLayer || [];
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google" content="notranslate">
 <meta name="keywords" content="buy building materials, buy paint, shop DIY, shop power tools">
-<meta name="description" content="For all your DIY, paint and building materials needs, trust Copia to help you get it done. Buy online, collect in-store, we deliver.">
+<meta name="description" content="For painting and building materials needs, trust Copia to help you get it done. Buy online, collect in-store, we deliver.">
 <meta name="robots" content="index,follow">
 <link rel="shortcut icon" type="image/x-icon" media="all" href="Top/UI/copia-theme/images/favicon.ico"/>
 <link rel="stylesheet" type="text/css" media="all" href="style.css"/>
@@ -1171,32 +1362,32 @@ dataLayer.push({
 "ecommerce": {
 "items": [
 {
-"location_id": "Builders South Africa | Shop DIY, Paint and Building Materials Online",
+"location_id": "Copia,Nairobi",
 "promotion_id": "cmsitem_00298015",
 "promotion_name": "Copia<br>Maisha Rahisi",
 // Title of the Banner and //index
-"creative_name": "https://www.builders.co.za/media/sys-master%2Froot%2Fh8c%2Fh68%2F13131799986206%2FWeek+31+Homepage+SA_1.2.jpg",
+"creative_name": "banner3.png",
 "creative_slot": "Section1Slot-cmsitem_00290058"
 }, {
 "location_id": "Builders South Africa | Shop DIY, Paint and Building Materials Online",
 "promotion_id": "cmsitem_00298015",
 "promotion_name": "Free 2.0 Ah battery & 4.0A charger with any bare CAT power tool!<br> Use voucher code CATFREE to checkout",
 // Title of the Banner and //index
-"creative_name": "https://www.builders.co.za/media/sys-master%2Froot%2Fh11%2Fhaa%2F13131812732958%2FWk30-31-Cat-homepage-header.jpg",
+"creative_name": "banner3.png",
 "creative_slot": "Section1Slot-cmsitem_00290058"
 }, {
 "location_id": "Builders South Africa | Shop DIY, Paint and Building Materials Online",
 "promotion_id": "cmsitem_00298015",
 "promotion_name": "Right paint. Right prices. <br> #HeresToHome",
 // Title of the Banner and //index
-"creative_name": "https://www.builders.co.za/media/sys-master%2Froot%2Fhc8%2Fh9d%2F13131807916062%2FWeek+31+Homepage+SA_2.jpg",
+"creative_name": "",
 "creative_slot": "Section1Slot-cmsitem_00290058"
 }, {
 "location_id": "Builders South Africa | Shop DIY, Paint and Building Materials Online",
 "promotion_id": "cmsitem_00298015",
 "promotion_name": "Get exclusive deals when you sign up for Builders+",
 // Title of the Banner and //index
-"creative_name": "https://www.builders.co.za/media/sys-master%2Froot%2Fhfa%2Fh70%2F13129898983454%2FWeek+22+Homepage+SA_Banner+1.jpg",
+"creative_name": "",
 "creative_slot": "Section1Slot-cmsitem_00290058"
 }, {
 "location_id": "Builders South Africa | Shop DIY, Paint and Building Materials Online",
@@ -1225,9 +1416,9 @@ dataLayer.push({
 </a>
 </div>
 <div class="banner-carousel custom-carousel single-banner" data-autoplay-timeout="10000">
-<div class="image bannerCarousalGA" style='background-image: url("Top/UI/copia-theme/images/banner3.png")' data-componentuid="cmsitem_00298015" data-componentname="Copia<br>Maisha Rahisi" data-creativename="banner1.png" data-creativeslot="Section1Slot-cmsitem_00290058">
+<div class="image bannerCarousalGA" style='background-image: url("Top/UI/copia-theme/images/products-banner.png")' data-componentuid="cmsitem_00298015" data-componentname="Copia<br>Maisha Rahisi" data-creativename="banner3.png" data-creativeslot="Section1Slot-cmsitem_00290058">
 <div class="image-bg">
-<img class="img-responsive" height="367" width="1665" src="Top/UI/copia-theme/images/banner-blank.png" alt=""/>
+<img class="img-responsive" height="367" width="1665" src="Top/UI/copia-theme/images/COPIA-PESA-BANNER.jpeg" alt=""/>
 </div>
 <div class="cnt">
 <div class="content">
@@ -1242,14 +1433,14 @@ dataLayer.push({
 </div>
 </div>
 </div>
-<div class="image lazyOwl bannerCarousalGA" data-src="" data-componentuid="cmsitem_00298015" data-componentname="Free 2.0 Ah battery & 4.0A charger with any bare CAT power tool!<br> Use voucher code CATFREE to checkout" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fh11%2Fhaa%2F13131812732958%2FWk30-31-Cat-homepage-header.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
+<div class="image lazyOwl bannerCarousalGA" data-src="Top/UI/copia-theme/images/products-banner.png" data-componentuid="cmsitem_00298015" data-componentname="Free 2.0 Ah battery & 4.0A charger with any bare CAT power tool!<br> Use voucher code CATFREE to checkout" data-creativename="COPIA-PESA-BANNER" data-creativeslot="Section1Slot-cmsitem_00290058">
 <div class="image-bg">
-<img class="img-responsive" height="367" width="1665" src="Top/UI/copia-theme/images/banner-blank.png" alt=""/>
+<img class="img-responsive" height="367" width="1665" src="Top/UI/copia-theme/images/COPIA-PESA-BANNER.jpeg" alt=""/>
 </div>
 <div class="cnt">
 <div class="content">
 <h1>
-!<br>Use voucher code  to checkout
+<br>Use voucher code  to checkout
 </h1>
 <p>Valid until 31 July 2023</p>
 <a href="#" target="_self">
@@ -1259,14 +1450,14 @@ dataLayer.push({
 </div>
 </div>
 </div>
-<div class="image lazyOwl bannerCarousalGA" data-src="Top/UI/copia-theme/images/banner1.png" data-componentuid="cmsitem_00298015" data-componentname="Right paint. Right prices. <br> #HeresToHome" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fhc8%2Fh9d%2F13131807916062%2FWeek+31+Homepage+SA_2.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
+<div class="image lazyOwl bannerCarousalGA" data-src="Top/UI/copia-theme/images/products-banner.png" data-componentuid="cmsitem_00298015" data-componentname="Right paint. Right prices. <br> #HeresToHome" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fhc8%2Fh9d%2F13131807916062%2FWeek+31+Homepage+SA_2.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
 <div class="image-bg">
 <img class="img-responsive" height="367" width="1665" src="Top/UI/copia-theme/images/banner-blank.png" alt=""/>
 </div>
 <div class="cnt">
 <div class="content">
 <h1>
-Right paint. Right prices. <br>#HeresToHome
+Copia Mashinani <br>
 </h1>
 <p>Valid from 18 July -21 August 2023</p>
 <a href="#" target="_self">
@@ -1276,7 +1467,7 @@ Right paint. Right prices. <br>#HeresToHome
 </div>
 </div>
 </div>
-<div class="image lazyOwl bannerCarousalGA" data-src=Top/UI/copia-theme/images/banner2.png" data-componentuid="cmsitem_00298015" data-componentname="Get exclusive deals when you sign up for Builders+" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fhfa%2Fh70%2F13129898983454%2FWeek+22+Homepage+SA_Banner+1.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
+<div class="image lazyOwl bannerCarousalGA" data-src=Top/UI/copia-theme/images/products-banner.png" data-componentuid="cmsitem_00298015" data-componentname="Get exclusive deals when you sign up for Builders+" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fhfa%2Fh70%2F13129898983454%2FWeek+22+Homepage+SA_Banner+1.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
 <div class="image-bg">
 <img class="img-responsive" height="367" width="1665" src="Top/UI/copia-themes/images/banner-blank.png" alt=""/>
 </div>
@@ -1293,7 +1484,7 @@ Enjoy the plus side of life. <br>Valid from 18 July – 20 August 2023
 </div>
 </div>
 </div>
-<div class="image lazyOwl bannerCarousalGA" data-src="https://www.builders.co.za/media/sys-master%2Froot%2Fh33%2Fhe9%2F13131808047134%2FWeek+28+Homepage+SA+Banner+1.jpg?quality=367x1665&type=banner" data-componentuid="cmsitem_00298015" data-componentname="Elevate your bathroom to a new <br> standard. #HeresToHome" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fh33%2Fhe9%2F13131808047134%2FWeek+28+Homepage+SA+Banner+1.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
+<div class="image lazyOwl bannerCarousalGA" data-src="Top/UI/copia-theme/images/products-banner.png" data-componentuid="cmsitem_00298015" data-componentname="Elevate your bathroom to a new <br> standard. #HeresToHome" data-creativename="https://www.builders.co.za/media/sys-master%2Froot%2Fh33%2Fhe9%2F13131808047134%2FWeek+28+Homepage+SA+Banner+1.jpg" data-creativeslot="Section1Slot-cmsitem_00290058">
 <div class="image-bg">
 <img class="img-responsive" height="367" width="1665" src="Top/UI/copia-theme/images/banner-blank.png" alt=""/>
 </div>
@@ -1393,12 +1584,12 @@ height: auto;
 <div class="row-staggered-columns">
 <div class="banner_desktop">
 <a href="#">
-<img alt="" src="Top/UI/copia-theme/images/banner2.png" style="width:100%"/>
+<img alt="" src="Top/UI/copia-theme/images/banner3.png" style="width:100%"/>
 </a>
 </div>
 <div class="banner_mobile">
 <a href="#">
-<img alt="" src="Top/UI/copia-theme/images/banner2.png" style="height:auto; width:100%"/>
+<img alt="" src="Top/UI/copia-theme/images/banner3.png" style="height:auto; width:100%"/>
 </a>
 </div>
 </div>
